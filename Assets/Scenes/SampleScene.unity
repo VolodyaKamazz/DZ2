@@ -412,10 +412,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6f8221c169a85140af1c52334f8783e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
-  cubeCount: 4
+  cubeCount: 10
   prefab: {fileID: 9028342195190012701, guid: 52d0e1ee5a062fd48a4b40e32d037802, type: 3}
   radius: 10
   isEvenly: 1
+  unevenlyAngleStep: 6
 --- !u!4 &505325224
 Transform:
   m_ObjectHideFlags: 0
