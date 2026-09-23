@@ -8,21 +8,17 @@ public class CubeCreation : MonoBehaviour
     [SerializeField] private GameObject prefab;
     [SerializeField] private int radius;
     [SerializeField] private bool isEvenly = true;
-    [SerializeField] private int unevenlyAngleStep;
 
     private int previousRadius;
     private bool previousIsEvenly;
-    private int previousUnevenlyAngleStep;
 
     public int Radius => radius;
     public int CubeCount => cubeCount;
     public GameObject Prefab => prefab;
     public bool IsEvenly => isEvenly;
-    public int UnevenlyAngleStep => unevenlyAngleStep;
 
     public static event Action OnRadiusChanged;
     public static event Action OnIsEvenlyChanged;
-    public static event Action OnUnevenlyAngleStepChanged;
 
     private void Awake()
     {
@@ -43,7 +39,6 @@ public class CubeCreation : MonoBehaviour
     {
         OnRadiusChanged += RecreateCubes;
         OnIsEvenlyChanged += RecreateCubes;
-        OnUnevenlyAngleStepChanged += RecreateCubes;
 
     }
 
@@ -59,12 +54,6 @@ public class CubeCreation : MonoBehaviour
             OnIsEvenlyChanged.Invoke();
             previousIsEvenly = IsEvenly;
         }
-        if (UnevenlyAngleStep != previousUnevenlyAngleStep)
-        {
-            OnUnevenlyAngleStepChanged.Invoke();
-            previousUnevenlyAngleStep = UnevenlyAngleStep;
-        }
-
     }
 
     private void CreateCubes()
@@ -76,7 +65,7 @@ public class CubeCreation : MonoBehaviour
         }
         else
         {
-            radianAngleStep = UnevenlyAngleStep * Mathf.PI / 180;
+            radianAngleStep = 2 * (float)Math.Asin(Prefab.gameObject.transform.localScale.x / (2 * Radius));
         }
         for (var i = 0; i < CubeCount; i++)
         {
