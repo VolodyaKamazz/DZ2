@@ -74,6 +74,7 @@ public class CubeCreation : MonoBehaviour
             var position = new Vector3(x, transform.position.y, z);
             var cube = Instantiate(Prefab, transform);
             cube.transform.localPosition = position;
+            cube.transform.name = $"Cube {i}";
             Debug.Log($"Куб {i} создан по координатам {position}");
             cube.transform.SetParent(transform);
         }
