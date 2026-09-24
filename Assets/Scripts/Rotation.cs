@@ -24,7 +24,12 @@ public class Rotation : MonoBehaviour
 
     void Update()
     {
+        
+    }
 
+    private void FixedUpdate()
+    {
+        ChangeVelocity();
     }
 
     private void OnEnable()
@@ -42,7 +47,7 @@ public class Rotation : MonoBehaviour
         OnSomethingChanged?.Invoke();
     }
 
-    public void ChangeVelocity()
+    private void ChangeVelocity()
     {
         Rigidbody.angularVelocity = AngularVelocity;
     }

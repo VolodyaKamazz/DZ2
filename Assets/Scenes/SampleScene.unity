@@ -414,9 +414,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6f8221c169a85140af1c52334f8783e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
-  cubeCount: 10
-  prefab: {fileID: 9028342195190012701, guid: 52d0e1ee5a062fd48a4b40e32d037802, type: 3}
-  radius: 10
+  cubeCount: 12
+  radius: 13
   isEvenly: 1
 --- !u!4 &505325224
 Transform:
@@ -427,7 +426,7 @@ Transform:
   m_GameObject: {fileID: 505325222}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: -0}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -445,7 +444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d82ffe13450696a46ac3749d3d6d7f01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Rotation
-  angularVelocity: {x: 0, y: 0, z: 0}
+  angularVelocity: {x: 1, y: 1, z: 1}
 --- !u!54 &505325226
 Rigidbody:
   m_ObjectHideFlags: 0

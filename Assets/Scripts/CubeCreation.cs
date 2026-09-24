@@ -3,24 +3,24 @@ using System;
 
 public class CubeCreation : MonoBehaviour
 {
-    [SerializeField] private int cubeCount;
-    [SerializeField] private GameObject prefab;
-    [SerializeField] private int radius;
+    [SerializeField][Min(0)] private int cubeCount;
+    [SerializeField][Min(0)] private int radius;
     [SerializeField] private bool isEvenly = true;
 
-    private int previousRadius;
-    private bool previousIsEvenly;
+    private GameObject prefab;
 
     public int Radius => radius;
     public int CubeCount => cubeCount;
+    private int InitialCubeCount;
     public GameObject Prefab => prefab;
     public bool IsEvenly => isEvenly;
 
-    public static event Action OnRadiusChanged;
-    public static event Action OnIsEvenlyChanged;
+    public static event Action OnSomethingChanged;
 
     private void Awake()
     {
+        prefab = Resources.Load<GameObject>("Prefabs/cube");
+        InitialCubeCount = CubeCount;
         CreateCubes();
     }
 
@@ -36,29 +36,17 @@ public class CubeCreation : MonoBehaviour
 
     private void OnEnable()
     {
-        OnRadiusChanged += RecreateCubes;
-        OnIsEvenlyChanged += RecreateCubes;
-
+        OnSomethingChanged += RecreateCubes;
     }
 
     private void OnDisable()
     {
-        OnRadiusChanged -= RecreateCubes;
-        OnIsEvenlyChanged -= RecreateCubes;
+        OnSomethingChanged -= RecreateCubes;
     }
 
     private void OnValidate()
     {
-        if (Radius != previousRadius)
-        {
-            OnRadiusChanged?.Invoke();
-            previousRadius = Radius;
-        }
-        if (IsEvenly != previousIsEvenly)
-        {
-            OnIsEvenlyChanged?.Invoke();
-            previousIsEvenly = IsEvenly;
-        }
+        OnSomethingChanged?.Invoke();
     }
 
     private void CreateCubes()
@@ -66,22 +54,31 @@ public class CubeCreation : MonoBehaviour
         float radianAngleStep;
         if (IsEvenly == true)
         {
-            radianAngleStep = 2 * Mathf.PI / CubeCount;
+            radianAngleStep = 2 * Mathf.PI / InitialCubeCount;
         }
         else
         {
-            radianAngleStep = 2 * (float)Math.Asin(Prefab.gameObject.transform.localScale.x / (2 * Radius));
+            if (Radius == 0)
+            {
+                radianAngleStep = 0;
+            }
+            else
+            {
+                radianAngleStep = 2 * (float)Math.Asin(Prefab.gameObject.transform.localScale.x / (2 * Radius));
+            }
         }
-        for (var i = 0; i < CubeCount; i++)
+        transform.position = Vector3.zero;
+        for (var i = 0; i < InitialCubeCount; i++)
         {
-            var x = transform.position.x + Radius * Mathf.Cos(radianAngleStep * i);
-            var z = transform.position.z + Radius * Mathf.Sin(radianAngleStep * i);
-            var position = new Vector3(x, transform.position.y, z);
+            var x = Radius * Mathf.Cos(radianAngleStep * i);
+            var z = Radius * Mathf.Sin(radianAngleStep * i);
+            var localPosition = new Vector3(x, 0, z);
             var cube = Instantiate(Prefab, transform);
-            cube.transform.localPosition = position;
-            cube.transform.name = $"Cube {i}";
-            Debug.Log($"Куб {i} создан по координатам {position}");
             cube.transform.SetParent(transform);
+            cube.transform.localPosition = localPosition;
+            cube.transform.name = $"Cube {i}";
+            Debug.Log($"Куб {i} создан по координатам {localPosition}");
+            
         }
     }
 
