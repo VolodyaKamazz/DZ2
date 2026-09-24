@@ -392,7 +392,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 505325224}
+  - component: {fileID: 505325226}
   - component: {fileID: 505325223}
+  - component: {fileID: 505325225}
   m_Layer: 0
   m_Name: Central Point
   m_TagString: Untagged
@@ -416,7 +418,6 @@ MonoBehaviour:
   prefab: {fileID: 9028342195190012701, guid: 52d0e1ee5a062fd48a4b40e32d037802, type: 3}
   radius: 10
   isEvenly: 1
-  unevenlyAngleStep: 6
 --- !u!4 &505325224
 Transform:
   m_ObjectHideFlags: 0
@@ -432,6 +433,46 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &505325225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505325222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d82ffe13450696a46ac3749d3d6d7f01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Rotation
+  angularVelocity: {x: 0, y: 0, z: 0}
+--- !u!54 &505325226
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505325222}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 14
+  m_CollisionDetection: 0
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0

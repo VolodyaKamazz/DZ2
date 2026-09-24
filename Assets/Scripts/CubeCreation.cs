@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Events;
 using System;
 
 public class CubeCreation : MonoBehaviour
@@ -42,16 +41,22 @@ public class CubeCreation : MonoBehaviour
 
     }
 
+    private void OnDisable()
+    {
+        OnRadiusChanged -= RecreateCubes;
+        OnIsEvenlyChanged -= RecreateCubes;
+    }
+
     private void OnValidate()
     {
         if (Radius != previousRadius)
         {
-            OnRadiusChanged.Invoke();
+            OnRadiusChanged?.Invoke();
             previousRadius = Radius;
         }
         if (IsEvenly != previousIsEvenly)
         {
-            OnIsEvenlyChanged.Invoke();
+            OnIsEvenlyChanged?.Invoke();
             previousIsEvenly = IsEvenly;
         }
     }
